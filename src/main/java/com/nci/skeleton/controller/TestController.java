@@ -10,14 +10,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/test")
 public class TestController {
 
-    @Value("application.test.key")
-    String testValue;
+    @Value("myKey1")
+    String testValue1;
+
+    @Value("myKey2")
+    String testValue2;
+
 
     private final TestService testService;
 
@@ -27,9 +33,12 @@ public class TestController {
     }
 
     @GetMapping
-    public ResponseEntity<String> getAllTestData() {
-        System.out.println("Test Value is : "+testValue);
-        return new ResponseEntity<>(testValue, HttpStatus.OK);
+    public ResponseEntity<Map<String, String>> getAllTestData() {
+        System.out.println("Test Value1 is : "+testValue1+" and Test Value2 is : "+testValue2);
+        Map<String, String> map= new HashMap<>();
+        map.put("key1", testValue1);
+        map.put("key2", testValue2);
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
 }
