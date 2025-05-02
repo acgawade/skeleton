@@ -27,6 +27,9 @@ public class TestController {
     @Value("${myKey3}")
     String testValue3;
 
+    @Value("${application.config.myKey4}")
+    String testValue4;
+
     private final TestService testService;
 
     @Autowired
@@ -39,8 +42,9 @@ public class TestController {
         System.out.println("Test Value1 is : "+testValue1+" and Test Value2 is : "+testValue2);
         Map<String, String> map= new HashMap<>();
         map.put("key1", testValue1);
-        map.put("key2", testValue2);
+        map.put("SecreteKey2", testValue2);
         map.put("key3", testValue3);
+        map.put("key4", testValue4);
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
