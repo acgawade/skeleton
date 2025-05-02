@@ -18,12 +18,14 @@ import java.util.Map;
 @RequestMapping("/api/v1/test")
 public class TestController {
 
-    @Value("myKey1")
+    @Value("${myKey1}")
     String testValue1;
 
-    @Value("myKey2")
+    @Value("${myKey2}")
     String testValue2;
 
+    @Value("${myKey3}")
+    String testValue3;
 
     private final TestService testService;
 
@@ -38,6 +40,7 @@ public class TestController {
         Map<String, String> map= new HashMap<>();
         map.put("key1", testValue1);
         map.put("key2", testValue2);
+        map.put("key3", testValue3);
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
